@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AlugaAppQuixada</string>
+    <string name="hint_email">Digite o seu email</string>
+    <string name="hint_senha">Digite a sua senha</string>
+    <string name="criar_conta">Não tem conta? crie uma!</string>
+
+
 </resources>
