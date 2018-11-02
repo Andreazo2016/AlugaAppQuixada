@@ -1,7 +1,9 @@
 package ufc.com.alugaappquixada.activity;
 
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -14,29 +16,41 @@ import ufc.com.alugaappquixada.R;
 
 
 public class HomeActivity extends FragmentActivity implements OnMapReadyCallback {
-
+    private BottomSheetBehavior mBottomSheetBehavior;
+    private View bottomSheet;
     private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.bottom_sheet_layout);
+        bottomSheet = findViewById( R.id.bottom_sheet );
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.maps);
         mapFragment.getMapAsync(this);
+        setupBottomSheet();
+    }
+
+    private void setupBottomSheet() {
+        mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        mBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
+                    mBottomSheetBehavior.setPeekHeight(0);
+                }
+
+            }
+
+            @Override
+            public void onSlide(View bottomSheet, float slideOffset) {
+
+            }
+        });
     }
 
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
