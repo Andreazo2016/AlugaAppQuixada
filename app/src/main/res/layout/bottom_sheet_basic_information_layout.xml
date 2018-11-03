@@ -5,15 +5,29 @@
     android:orientation="vertical"
     >
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
         >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_image"
+
+            android:layout_width="42dp"
+            android:layout_height="46dp"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="3.5dp"
+            android:contentDescription="@null"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
             android:text="@string/showBasicInfor"
             />
     </LinearLayout>
@@ -106,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             >
             <Button
