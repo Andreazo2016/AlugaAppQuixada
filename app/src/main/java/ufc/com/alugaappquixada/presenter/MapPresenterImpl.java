@@ -6,7 +6,11 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import ufc.com.alugaappquixada.Model.Enterprise;
+import ufc.com.alugaappquixada.Model.MarkerInformation;
+import ufc.com.alugaappquixada.Model.Owner;
 import ufc.com.alugaappquixada.Model.PointMaker;
+import ufc.com.alugaappquixada.service.EnterpriseService;
 import ufc.com.alugaappquixada.service.LocationService;
 import ufc.com.alugaappquixada.view.MapView;
 
@@ -15,23 +19,36 @@ public class MapPresenterImpl implements MapPresenter {
     private Context ctx;
     private LocationService gpsLocation;
     private final String TAG_CLASS = "MapPresenterImpl_CLASS";
+    private EnterpriseService enterpriseService;
     public MapPresenterImpl(Context ctx,MapView mapView){
         this.mapView = mapView;
         this.ctx = ctx;
         this.gpsLocation = new LocationService(ctx);
+        this.enterpriseService = new EnterpriseService();
     }
 
     @Override
-    public void onMakerClick(Integer tagMarker) {
+    public void onMarkerClick(Integer tagMarker) {
+        if(tagMarker != null) {
+           Enterprise enterpriseCliked =  this.enterpriseService.findEnterpriseById(tagMarker);
+            Owner owner = enterpriseCliked.getOwner();
+           mapView.showInformationAboutMarkerClicked(MarkerInformation
+                   .create(owner.getEmail(),owner.getName(),enterpriseCliked.getDescription(),owner.getPhoneNumber().getNumber()));
+        }
 
     }
 
     @Override
     public void seachAvailableApsNearByMe() {
         List<PointMaker> listMockPointMaker = new ArrayList<>();
-        listMockPointMaker.add(PointMaker.create(-5.7323739,-39.0102391,"José Oster Machado",1));
-        listMockPointMaker.add(PointMaker.create(-5.7320133,-39.010271,"Mr Dog",2));
-        listMockPointMaker.add(PointMaker.create(-5.732563,-39.0107431,"Bar da Telma",3));
+        List<Enterprise> avaliableEnterpriseNaerMe = this.enterpriseService.findAllEnterprise();
+        for(Enterprise enterprise : avaliableEnterpriseNaerMe){
+            listMockPointMaker.add(PointMaker.create(
+                    enterprise.getLatitute(),enterprise.getLongitute()
+                    ,enterprise.getDescription()
+                    ,enterprise.getId()));
+        }
+
         mapView.addAvailableApsOnMap(listMockPointMaker);
     }
 
