@@ -4,6 +4,11 @@
     <string name="hint_senha">Digite a sua senha</string>
     <string name="criar_conta">Não tem conta? crie uma!</string>
     <string name="title_activity_home">Map</string>
+    <string name="basic_name">Proprietário:</string>
+    <string name="basic_email">Email:</string>
+    <string name="basic_adress">Enredeço:</string>
+    <string name="basic_phone_number">Telefone:</string>
+    <string name="showBasicInfor">Informações de contato do proprietário</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDI185i5SazsVPakbOY5j9u4UMZeeIQnog</string>
 
 

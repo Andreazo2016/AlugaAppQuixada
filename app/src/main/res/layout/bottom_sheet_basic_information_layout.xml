@@ -5,11 +5,27 @@
     android:orientation="vertical"
     >
     <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:text="@string/showBasicInfor"
+            />
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="40dp"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp"
         android:layout_gravity="center"
+        android:background="@android:color/white"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,43 +37,47 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email:"
+                android:text="@string/basic_name"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="      "
+                android:text="   "
                 />
 
             <TextView
+                android:id="@+id/textNameBasic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Andreazo Silva:" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:gravity="center"
 
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="10dp"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Endereço:"
+                android:text="@string/basic_email"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="      "
+                android:text="    "
                 />
+
             <TextView
+                android:id="@+id/textEmailBasic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rua Alfredo IVo"
-                />
+                android:text="Andreazo Silva:" />
+
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,14 +88,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Telefone:"
+                android:text="@string/basic_phone_number"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="      "
+                android:text="    "
                 />
             <TextView
+                android:id="@+id/textPhoneBasic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="(88) 9 99071542"
@@ -86,11 +107,15 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="50dp"
-            android:gravity="bottom|end"
+            android:gravity="center"
             >
             <Button
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/background_btn_see_more"
                 android:text="Ver Mais"
                 />
         </LinearLayout>
