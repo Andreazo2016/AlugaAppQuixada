@@ -38,7 +38,6 @@ public class HomeActivity extends FragmentActivity
     private final int HEIGHT_OF_SHOWED_BOTTOM_SHEET = 200;
     private TextView nameText;
     private TextView emailText;
-    private TextView adressText;
     private TextView phoneNumberText;
     private CircleImageView userOwenerImage;
 

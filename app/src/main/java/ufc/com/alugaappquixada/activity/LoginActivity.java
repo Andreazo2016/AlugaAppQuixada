@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import ufc.com.alugaappquixada.R;
@@ -21,6 +22,7 @@ public class LoginActivity extends Activity implements LoginView {
     private EditText emailText;
     private EditText passwordText;
     private Button  loginBtnConfirm;
+    private TextView signUp;
     private LoginPresenter loginPresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class LoginActivity extends Activity implements LoginView {
         emailText = findViewById(R.id.emailText);
         passwordText = findViewById(R.id.passwordText);
         loginBtnConfirm = findViewById(R.id.loginBtn);
+        signUp = findViewById(R.id.signup);
 
         loginPresenter = LoginPresenterImpl.create(this);
 
@@ -39,6 +42,13 @@ public class LoginActivity extends Activity implements LoginView {
                 String username = emailText.getText().toString();
                 String password = passwordText.getText().toString();
                 loginPresenter.validateCredential(username,password);
+            }
+        });
+        final Intent signUpActivity = new Intent(this,SignUpActivity.class);
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(signUpActivity);
             }
         });
     }
