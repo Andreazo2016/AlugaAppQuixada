@@ -1,7 +1,6 @@
 package ufc.com.alugaappquixada.activity;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -12,14 +11,13 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import ufc.com.alugaappquixada.Model.MarkerInformation;
 import ufc.com.alugaappquixada.Model.PointMaker;
 import ufc.com.alugaappquixada.R;
@@ -42,6 +40,7 @@ public class HomeActivity extends FragmentActivity
     private TextView emailText;
     private TextView adressText;
     private TextView phoneNumberText;
+    private CircleImageView userOwenerImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +49,7 @@ public class HomeActivity extends FragmentActivity
 
 
         bottomSheet = findViewById( R.id.bottom_sheet );
+        userOwenerImage = findViewById(R.id.user_image);
 
         mapPresenter = new MapPresenterImpl(this,this);
 
@@ -88,9 +88,10 @@ public class HomeActivity extends FragmentActivity
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         PointMaker currentUser = mapPresenter.getMyLocation();
+        Bitmap customIconForCurrentUserLoged = Util.createCustomMarker(this,R.drawable.user_image_min);
         mMap.addMarker(new MarkerOptions()
                 .position(currentUser.getMyPosition())
-                .title(currentUser.getTitle()));
+                .title(currentUser.getTitle())).setIcon(BitmapDescriptorFactory.fromBitmap(customIconForCurrentUserLoged));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentUser.getMyPosition(),MAX_SIZE_ZOOM));
 
         /*When a marker was clicked*/
@@ -115,16 +116,17 @@ public class HomeActivity extends FragmentActivity
         this.nameText.setText(markerInformation.getName());
         this.emailText.setText(markerInformation.getEmail());
         this.phoneNumberText.setText(markerInformation.getPhoneNumber());
+        userOwenerImage.setImageResource(R.drawable.user_image_min);
 
     }
 
     @Override
     public void addAvailableApsOnMap(List<PointMaker> availablesAps) {
+        Bitmap customIconavailablesAps = Util.createCustomMarker(this,R.drawable.building_icon_min);
         for (PointMaker aps : availablesAps){
-            mMap.addMarker(new MarkerOptions()
-                    .position(aps.getMyPosition())
-                    .title(aps.getTitle()))
-                    .setTag(aps.getTag());
+            Marker pointCreated = mMap.addMarker(new MarkerOptions().position(aps.getMyPosition()).title(aps.getTitle()));
+            pointCreated.setTag(aps.getTag());
+            pointCreated.setIcon(BitmapDescriptorFactory.fromBitmap(customIconavailablesAps));
         }
     }
 
