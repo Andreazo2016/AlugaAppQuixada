@@ -72,16 +72,13 @@ public class HomeActivity extends FragmentActivity
                 if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
                     mBottomSheetBehavior.setPeekHeight(CLOSE_BOTTOM_SHEET);
                 }
-
             }
-
             @Override
             public void onSlide(View bottomSheet, float slideOffset) {
 
             }
         });
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

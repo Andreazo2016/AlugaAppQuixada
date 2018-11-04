@@ -12,9 +12,6 @@ import ufc.com.alugaappquixada.activity.HomeActivity;
 import ufc.com.alugaappquixada.activity.LoginActivity;
 
 public class MainActivity extends Activity {
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
