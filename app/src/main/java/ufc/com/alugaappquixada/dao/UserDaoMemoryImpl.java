@@ -19,13 +19,10 @@ public class UserDaoMemoryImpl implements UserDao{
         }
         return instance;
     }
-
-
     @Override
     public void save(User user) {
         Util.saveUserLoged(ctx,user);
     }
-
     @Override
     public User findOne(String email) {
         return Util.getUserByUserName(ctx,email);

@@ -27,6 +27,14 @@ public class EnterpriseDaoMemoryImpl implements EnterpriseDAO {
                 new Owner("Fernando Souza","ferDemais@gmail.com"
                         ,new PhoneNumber("Zap","88 979071533"))
                 ,"Bar da Telma"));
+        this.dataBaseOfEnterprises.add(new Enterprise(4,-4.969663,-39.014899,
+                new Owner("Seu zé","ZéDemais@gmail.com"
+                        ,new PhoneNumber("Zap","88 97907456"))
+                ,"Lpc Decorações"));
+        this.dataBaseOfEnterprises.add(new Enterprise(5,-4.9684459,-39.014324,
+                new Owner("Ceverino","CVmais@gmail.com"
+                        ,new PhoneNumber("Zap","88 929571533"))
+                ,"Apartamentos do freitas"));
     }
 
     public static EnterpriseDaoMemoryImpl getInstance(){
