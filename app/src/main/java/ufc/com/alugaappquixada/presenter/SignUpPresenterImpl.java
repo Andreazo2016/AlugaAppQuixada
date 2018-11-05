@@ -1,5 +1,7 @@
 package ufc.com.alugaappquixada.presenter;
 
+import android.content.Context;
+
 import ufc.com.alugaappquixada.Model.User;
 import ufc.com.alugaappquixada.service.UserService;
 import ufc.com.alugaappquixada.view.SignUpView;
@@ -9,13 +11,14 @@ public class SignUpPresenterImpl implements SignUpPresenter {
     private static SignUpPresenterImpl instance;
     private UserService userService;
     private SignUpView view;
-    private SignUpPresenterImpl(SignUpView view){
+    private Context ctx;
+    private SignUpPresenterImpl(Context ctx,SignUpView view){
         this.view = view;
-        this.userService = UserService.getInstance();
+        this.userService = UserService.createWithContext(ctx);
     }
-    public static SignUpPresenterImpl create(SignUpView view){
+    public static SignUpPresenterImpl createWithView(Context ctx,SignUpView view){
         if(instance == null){
-            instance = new SignUpPresenterImpl(view);
+            instance = new SignUpPresenterImpl(ctx,view);
         }
         return instance;
     }
