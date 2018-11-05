@@ -13,7 +13,6 @@ public class UserDaoMemoryImpl implements UserDao{
     private UserDaoMemoryImpl(Context ctx){
         this.ctx = ctx;
     }
-
     public static UserDaoMemoryImpl createWithContext(Context ctx){
         if(instance == null){
             instance = new UserDaoMemoryImpl(ctx);
