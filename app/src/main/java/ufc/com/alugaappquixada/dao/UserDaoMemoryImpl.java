@@ -13,20 +13,16 @@ public class UserDaoMemoryImpl implements UserDao{
     private UserDaoMemoryImpl(Context ctx){
         this.ctx = ctx;
     }
-
     public static UserDaoMemoryImpl createWithContext(Context ctx){
         if(instance == null){
             instance = new UserDaoMemoryImpl(ctx);
         }
         return instance;
     }
-
-
     @Override
     public void save(User user) {
         Util.saveUserLoged(ctx,user);
     }
-
     @Override
     public User findOne(String email) {
         return Util.getUserByUserName(ctx,email);

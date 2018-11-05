@@ -26,7 +26,10 @@ public class LoginService {
     }
     private boolean userWithUsernameExist(String username){
         this.user = loginDao.findUserByUsername(username);
-       return this.user.getEmail().equals(username);
+        if(user != null){
+            return this.user.getEmail().equals(username);
+        }
+        return false;
     }
     private boolean checkPasswords(String passwordDigitedByUser){
      return this.user.getPassword().equals(passwordDigitedByUser);

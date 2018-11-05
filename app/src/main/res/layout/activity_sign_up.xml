@@ -161,16 +161,10 @@
                 android:id="@+id/btnSignUp"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
                 android:background="@color/branco"
                 android:text="Cadastra-se"
                 />
-            <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:background="@color/branco"
-                android:text="Cancelar"/>
+
         </LinearLayout>
 
 
