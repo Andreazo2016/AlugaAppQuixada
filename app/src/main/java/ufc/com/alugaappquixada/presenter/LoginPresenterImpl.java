@@ -1,5 +1,7 @@
 package ufc.com.alugaappquixada.presenter;
 
+import android.content.Context;
+
 import ufc.com.alugaappquixada.response.LoginResponse;
 import ufc.com.alugaappquixada.service.LoginService;
 import ufc.com.alugaappquixada.view.LoginView;
@@ -9,12 +11,12 @@ public class LoginPresenterImpl implements LoginPresenter {
     private LoginService loginService;
 
     private LoginPresenterImpl(){}
-    private LoginPresenterImpl(LoginView loginView){
+    private LoginPresenterImpl(Context ctx,LoginView loginView){
         this.loginView = loginView;
-        this.loginService = LoginService.getInstance();
+        this.loginService = LoginService.getInstance(ctx);
     }
-    public static LoginPresenterImpl create(LoginView loginView){
-        return new LoginPresenterImpl(loginView);
+    public static LoginPresenterImpl createWithContext(Context ctx,LoginView loginView){
+        return new LoginPresenterImpl(ctx,loginView);
     }
 
 

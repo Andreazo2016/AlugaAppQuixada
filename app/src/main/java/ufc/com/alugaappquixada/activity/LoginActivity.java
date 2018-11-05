@@ -34,7 +34,7 @@ public class LoginActivity extends Activity implements LoginView {
         loginBtnConfirm = findViewById(R.id.loginBtn);
         signUp = findViewById(R.id.signup);
 
-        loginPresenter = LoginPresenterImpl.create(this);
+        loginPresenter = LoginPresenterImpl.createWithContext(this,this);
 
         loginBtnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override

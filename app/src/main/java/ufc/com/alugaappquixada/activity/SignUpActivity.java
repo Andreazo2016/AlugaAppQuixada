@@ -33,7 +33,7 @@ public class SignUpActivity extends Activity implements SignUpView {
         passwordUser = findViewById(R.id.passwordUser);
         btnSignUp = findViewById(R.id.btnSignUp);
 
-        signUpPresenter = SignUpPresenterImpl.create(this);
+        signUpPresenter = SignUpPresenterImpl.createWithView(this,this);
 
          btnSignUp.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -41,10 +41,7 @@ public class SignUpActivity extends Activity implements SignUpView {
                 signUp();
              }
          });
-
-
     }
-
 
     @Override
     public void signUp() {

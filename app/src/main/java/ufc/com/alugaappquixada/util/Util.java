@@ -26,7 +26,8 @@ import ufc.com.alugaappquixada.Model.User;
 import ufc.com.alugaappquixada.R;
 
 public class Util {
-    private static User user;
+    private static  User user;
+    private static String KEY_USER_LOGGED = "USER_LOGGED";
     public static Bitmap createCustomMarker(Context context, @DrawableRes int resource) {
 
         View marker = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker_user, null);
@@ -54,13 +55,30 @@ public class Util {
             return BitmapFactory.decodeResource(context.getResources(), drawableId);
 
     }
-    public static void saveUserLoged(User user){
-        user = user;
+    public static void saveUserLoged(Context ctx,User user){
+        SharedPreferences  mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String userSaved = gson.toJson(user);
+        int i = 0;
+        prefsEditor.putString(user.getEmail(), userSaved);
+        prefsEditor.commit();
     }
-    public static User getUserByUserName(String username){
-        return User.create("andreazo2012@gmail.com","Andreazo Silva","8888888","123");
+    public static User getUserByUserName(Context ctx,String username){
+        SharedPreferences  mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        Gson gson = new Gson();
+        String json = mPrefs.getString(username, null);
+         return gson.fromJson(json, User.class);
     }
-    public static User getUserLogged(){
-        return User.create("andreazo2012@gmail.com","Andreazo Silva","8888888","123");
+    public static User getUserLogged(Context ctx){
+        return getUserByUserName(ctx,KEY_USER_LOGGED);
+    }
+    public static void saveUserOnSesion(Context ctx,User user){
+        SharedPreferences  mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String userSaved = gson.toJson(user);
+        prefsEditor.putString(KEY_USER_LOGGED, userSaved);
+        prefsEditor.commit();
     }
 }
