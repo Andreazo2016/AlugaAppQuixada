@@ -39,9 +39,7 @@ public class MapPresenterImpl implements MapPresenter {
            mapView.showInformationAboutMarkerClicked(MarkerInformation
                    .create(owner.getEmail(),owner.getName(),enterpriseCliked.getDescription(),owner.getPhoneNumber().getNumber()));
         }
-
     }
-
     @Override
     public void seachAvailableApsNearByMe() {
         List<PointMaker> listMockPointMaker = new ArrayList<>();
@@ -52,7 +50,6 @@ public class MapPresenterImpl implements MapPresenter {
                     ,enterprise.getDescription()
                     ,enterprise.getId()));
         }
-
         mapView.addAvailableApsOnMap(listMockPointMaker);
     }
 
