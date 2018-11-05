@@ -2,6 +2,7 @@ package ufc.com.alugaappquixada.activity;
 
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -77,6 +78,7 @@ public class DetailsApartmentActivity extends Activity implements DatePickerDial
         switch(item.getItemId())
         {
             case R.id.actionLogout:
+                startActivity(new Intent(this,LoginActivity.class));
                 break;
 
         }

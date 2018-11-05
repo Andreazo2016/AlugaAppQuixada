@@ -1,10 +1,12 @@
 package ufc.com.alugaappquixada.activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -41,13 +43,14 @@ public class HomeActivity extends FragmentActivity
     private TextView adressText;
     private TextView phoneNumberText;
     private CircleImageView userOwenerImage;
+    private Button buttonViewDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bottom_sheet_layout);
 
-
+        buttonViewDetails = findViewById(R.id.buttonViewMore);
         bottomSheet = findViewById( R.id.bottom_sheet );
         userOwenerImage = findViewById(R.id.user_image);
 
@@ -60,6 +63,10 @@ public class HomeActivity extends FragmentActivity
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.maps);
         mapFragment.getMapAsync(this);
+
+        buttonViewDetails.setOnClickListener( (view) -> {
+            startActivity(new Intent(this,DetailsApartmentActivity.class));
+        });
 
     }
 
