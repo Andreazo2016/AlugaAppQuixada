@@ -1,10 +1,14 @@
 package ufc.com.alugaappquixada.dao;
 
 import ufc.com.alugaappquixada.Model.User;
+import ufc.com.alugaappquixada.service.UserService;
 
 public class LoginDaoMemoryImpl implements LoginDao {
     private static LoginDaoMemoryImpl instance;
-    private LoginDaoMemoryImpl(){}
+    private UserService userService;
+    private LoginDaoMemoryImpl(){
+        this.userService = UserService.getInstance();
+    }
 
     public static LoginDaoMemoryImpl getInstance(){
         if(instance == null){
@@ -14,6 +18,6 @@ public class LoginDaoMemoryImpl implements LoginDao {
     }
     @Override
     public User findUserByUsername(String username) {
-        return User.create("andreazo2012@gmail.com","Andreazo","88999071542","123321a");
+        return userService.getUserByUsername(username);
     }
 }

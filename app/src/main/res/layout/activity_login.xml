@@ -64,7 +64,7 @@
             />
 
         <TextView
-            android:id="@+id/naoCadastrado"
+            android:id="@+id/signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"

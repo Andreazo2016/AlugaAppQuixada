@@ -2,11 +2,13 @@ package ufc.com.alugaappquixada.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
@@ -17,11 +19,14 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.gson.Gson;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import ufc.com.alugaappquixada.Model.User;
 import ufc.com.alugaappquixada.R;
 
 public class Util {
+    private static User user;
     public static Bitmap createCustomMarker(Context context, @DrawableRes int resource) {
 
         View marker = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker_user, null);
@@ -48,5 +53,14 @@ public class Util {
         Drawable drawable = ContextCompat.getDrawable(context, drawableId);
             return BitmapFactory.decodeResource(context.getResources(), drawableId);
 
+    }
+    public static void saveUserLoged(User user){
+        user = user;
+    }
+    public static User getUserByUserName(String username){
+        return User.create("andreazo2012@gmail.com","Andreazo Silva","8888888","123");
+    }
+    public static User getUserLogged(){
+        return User.create("andreazo2012@gmail.com","Andreazo Silva","8888888","123");
     }
 }
