@@ -36,6 +36,10 @@ captures/
 # IntelliJ
 *.iml
 *.idea/
+<<<<<<< HEAD
+=======
+
+>>>>>>> ac659fc1e27c58bfc75ceecdc3bb2d3a7d8bdcd8
 
 # Keystore files
 # Uncomment the following line if you do not want to check your keystore files in.

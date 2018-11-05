@@ -10,8 +10,10 @@ import ufc.com.alugaappquixada.Model.Enterprise;
 import ufc.com.alugaappquixada.Model.MarkerInformation;
 import ufc.com.alugaappquixada.Model.Owner;
 import ufc.com.alugaappquixada.Model.PointMaker;
+import ufc.com.alugaappquixada.Model.User;
 import ufc.com.alugaappquixada.service.EnterpriseService;
 import ufc.com.alugaappquixada.service.LocationService;
+import ufc.com.alugaappquixada.service.UserService;
 import ufc.com.alugaappquixada.view.MapView;
 
 public class MapPresenterImpl implements MapPresenter {
@@ -20,11 +22,13 @@ public class MapPresenterImpl implements MapPresenter {
     private LocationService gpsLocation;
     private final String TAG_CLASS = "MapPresenterImpl_CLASS";
     private EnterpriseService enterpriseService;
+    private UserService userService;
     public MapPresenterImpl(Context ctx,MapView mapView){
         this.mapView = mapView;
         this.ctx = ctx;
         this.gpsLocation = new LocationService(ctx);
         this.enterpriseService = new EnterpriseService();
+        this.userService = UserService.getInstance();
     }
 
     @Override
@@ -35,9 +39,7 @@ public class MapPresenterImpl implements MapPresenter {
            mapView.showInformationAboutMarkerClicked(MarkerInformation
                    .create(owner.getEmail(),owner.getName(),enterpriseCliked.getDescription(),owner.getPhoneNumber().getNumber()));
         }
-
     }
-
     @Override
     public void seachAvailableApsNearByMe() {
         List<PointMaker> listMockPointMaker = new ArrayList<>();
@@ -48,7 +50,6 @@ public class MapPresenterImpl implements MapPresenter {
                     ,enterprise.getDescription()
                     ,enterprise.getId()));
         }
-
         mapView.addAvailableApsOnMap(listMockPointMaker);
     }
 
@@ -58,7 +59,7 @@ public class MapPresenterImpl implements MapPresenter {
             gpsLocation.showSettingsAlert();
             Log.d(TAG_CLASS,"Não foi possível pegar sua possição gps!");
         }
-        return PointMaker
-                .create(gpsLocation.getLatitude(),gpsLocation.getLongitude(),"me",0);
+        User userLogged = userService.getUserLogged();
+        return PointMaker.create(gpsLocation.getLatitude(),gpsLocation.getLongitude(),userLogged.getName(),0);
     }
 }

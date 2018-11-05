@@ -40,7 +40,6 @@ public class HomeActivity extends FragmentActivity
     private final int HEIGHT_OF_SHOWED_BOTTOM_SHEET = 200;
     private TextView nameText;
     private TextView emailText;
-    private TextView adressText;
     private TextView phoneNumberText;
     private CircleImageView userOwenerImage;
     private Button buttonViewDetails;
@@ -80,16 +79,13 @@ public class HomeActivity extends FragmentActivity
                 if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
                     mBottomSheetBehavior.setPeekHeight(CLOSE_BOTTOM_SHEET);
                 }
-
             }
-
             @Override
             public void onSlide(View bottomSheet, float slideOffset) {
 
             }
         });
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
