@@ -57,6 +57,9 @@ public class DetailsApartmentActivity extends Activity implements DatePickerDial
                 timePickerDialog.setTitle("Horário da visita");
 
                 timePickerDialog.show(getFragmentManager(), "TimePicker");
+                timePickerDialog.setOnDismissListener( (timeInterface) -> {
+                    startActivity(new Intent(this,HomeActivity.class));
+                });
             });
 
         });
