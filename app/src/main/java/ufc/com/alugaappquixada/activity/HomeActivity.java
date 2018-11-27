@@ -64,6 +64,7 @@ public class HomeActivity extends FragmentActivity
 
     private void setupBottomSheet() {
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        mBottomSheetBehavior.setHideable(true);
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         mBottomSheetBehavior.setPeekHeight(CLOSE_BOTTOM_SHEET);
         mBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {

@@ -5,10 +5,11 @@ import android.content.Context;
 import ufc.com.alugaappquixada.Model.User;
 import ufc.com.alugaappquixada.dao.LoginDao;
 import ufc.com.alugaappquixada.dao.LoginDaoMemoryImpl;
+import ufc.com.alugaappquixada.interfaceHelp.HalperUser;
 import ufc.com.alugaappquixada.response.LoginResponse;
 import ufc.com.alugaappquixada.util.Util;
 
-public class LoginService {
+public class LoginService  {
     private LoginDao loginDao;
     private User user;
     private static LoginService instance;
@@ -63,4 +64,9 @@ public class LoginService {
                 .create("User " + username + " do not existe!")
                 .setLoginAsStatusFailure();
     }
+    public void login(String username,String password){
+
+    }
+
+
 }
