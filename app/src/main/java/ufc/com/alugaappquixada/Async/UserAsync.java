@@ -19,7 +19,6 @@ public class UserAsync extends AsyncTask<User,Void,Boolean> {
     protected Boolean doInBackground(User... users) {
 
         Call<User> callback = userRepository.save(users[0]);
-        int i = 0;
         callback.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -27,7 +26,6 @@ public class UserAsync extends AsyncTask<User,Void,Boolean> {
                     Log.d("Sucess","Sucess save");
                 }
             }
-
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Log.d("Error",t.getMessage());
