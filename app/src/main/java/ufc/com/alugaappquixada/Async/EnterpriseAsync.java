@@ -2,6 +2,8 @@ package ufc.com.alugaappquixada.Async;
 
 import android.os.AsyncTask;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,6 +26,7 @@ public class EnterpriseAsync extends AsyncTask<Integer,Void,Void> {
     @Override
     protected Void doInBackground(Integer... id) {
         Call<Enterprise> enterpriseCall =  this.enterpriseRepository.findById(id[0]);
+
         enterpriseCall.enqueue(new Callback<Enterprise>() {
             @Override
             public void onResponse(Call<Enterprise> call, Response<Enterprise> response) {
@@ -42,6 +45,7 @@ public class EnterpriseAsync extends AsyncTask<Integer,Void,Void> {
 
             }
         });
+
         return null;
     }
 }
