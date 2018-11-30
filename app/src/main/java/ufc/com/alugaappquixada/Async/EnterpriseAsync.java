@@ -29,7 +29,6 @@ public class EnterpriseAsync extends AsyncTask<Integer,Void,Void> {
             public void onResponse(Call<Enterprise> call, Response<Enterprise> response) {
                 if(response.isSuccessful()){
                     Enterprise enterprise = response.body();
-                    int i = 0;
                     if(enterprise != null){
                         Owner owner = enterprise.getOwner();
                         mapView.showInformationAboutMarkerClicked(MarkerInformation

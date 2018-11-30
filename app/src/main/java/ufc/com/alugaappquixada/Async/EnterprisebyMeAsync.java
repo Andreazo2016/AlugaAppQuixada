@@ -1,7 +1,9 @@
 package ufc.com.alugaappquixada.Async;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +16,7 @@ import ufc.com.alugaappquixada.Model.PointMaker;
 import ufc.com.alugaappquixada.repository.EnterpriseRepository;
 import ufc.com.alugaappquixada.view.MapView;
 
-public class EnterprisebyMeAsync extends AsyncTask<Integer,Void,Void> {
+public class EnterprisebyMeAsync extends AsyncTask<Void,Void,Void> {
 
     private EnterpriseRepository enterpriseRepository;
     private MapView mapView;
@@ -23,7 +25,7 @@ public class EnterprisebyMeAsync extends AsyncTask<Integer,Void,Void> {
         this.enterpriseRepository = ConfigRetrofit.getRetrofitConfig().create(EnterpriseRepository.class);
     }
     @Override
-    protected Void doInBackground(Integer... voids) {
+    protected Void doInBackground(Void... voids) {
         Call<List<Enterprise>> listCall = this.enterpriseRepository.getAllEnterpriseNearByMe();
         listCall.enqueue(new Callback<List<Enterprise>>() {
             @Override
@@ -41,12 +43,13 @@ public class EnterprisebyMeAsync extends AsyncTask<Integer,Void,Void> {
 
                 }
             }
-
             @Override
             public void onFailure(Call<List<Enterprise>> call, Throwable t) {
 
             }
         });
+
+
         return null;
     }
 }

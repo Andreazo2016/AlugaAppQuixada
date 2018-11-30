@@ -8,8 +8,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_dp"
-        android:layout_width="42dp"
-        android:layout_height="46dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:civ_border_color="#fff"
         android:layout_alignParentTop="true"
         android:layout_gravity="center_horizontal"

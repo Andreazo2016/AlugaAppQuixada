@@ -23,8 +23,8 @@ public class SignUpPresenterImpl implements SignUpPresenter {
         return instance;
     }
     @Override
-    public void saveUser(String name, String email, String phone, String password) {
-        this.userService.salvarUser(User.create(email,name,phone,password));
+    public void saveUser(String name, String email, String phone, String password,String faceImage) {
+        this.userService.salvarUser(User.create(email,name,phone,password,faceImage));
         view.onSignUpSucess();
     }
 }

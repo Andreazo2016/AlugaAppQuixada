@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,8 @@ import android.widget.TextView;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.gson.Gson;
+
+import java.io.ByteArrayOutputStream;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import ufc.com.alugaappquixada.Model.User;
@@ -80,5 +83,15 @@ public class Util {
         String userSaved = gson.toJson(user);
         prefsEditor.putString(KEY_USER_LOGGED, userSaved);
         prefsEditor.commit();
+    }
+    public static String convertBitMapToBase64(Bitmap image){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream .toByteArray();
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
+    }
+    public static Bitmap base64ToBitMap(String image){
+        byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
+       return  BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
     }
 }

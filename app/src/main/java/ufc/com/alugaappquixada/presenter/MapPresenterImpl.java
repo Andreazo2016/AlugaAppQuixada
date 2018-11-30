@@ -42,18 +42,20 @@ public class MapPresenterImpl implements MapPresenter {
 
     @Override
     public void onMarkerClick(Integer tagMarker) {
+        /*
         if(tagMarker != null) {
            Enterprise enterpriseCliked =  this.enterpriseService.findEnterpriseById(tagMarker);
             Owner owner = enterpriseCliked.getOwner();
            mapView.showInformationAboutMarkerClicked(MarkerInformation
                    .create(owner.getEmail(),owner.getName(),enterpriseCliked.getDescription(),owner.getPhoneNumber().getNumber()));
         }
-        //new EnterpriseAsync(mapView).execute(tagMarker);
+        */
+
+        new EnterpriseAsync(mapView).execute(tagMarker);
     }
     @Override
     public void seachAvailableApsNearByMe() {
-
-
+        /*
        List<PointMaker> listMockPointMaker = new ArrayList<>();
         List<Enterprise> avaliableEnterpriseNaerMe = this.enterpriseService.findAllEnterprise();
         for(Enterprise enterprise : avaliableEnterpriseNaerMe){
@@ -63,8 +65,8 @@ public class MapPresenterImpl implements MapPresenter {
                     ,enterprise.getId()));
         }
         mapView.addAvailableApsOnMap(listMockPointMaker);
-
-       //new EnterprisebyMeAsync(mapView).execute(1);
+        */
+       new EnterprisebyMeAsync(mapView).execute();
     }
 
     @Override
