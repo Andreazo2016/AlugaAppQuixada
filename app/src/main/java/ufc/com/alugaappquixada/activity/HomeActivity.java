@@ -94,11 +94,12 @@ public class HomeActivity extends FragmentActivity
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         PointMaker currentUser = mapPresenter.getMyLocation();
-        Bitmap customIconForCurrentUserLoged = Util.createCustomMarker(this,R.drawable.user_image_min);
-        User user = Util.getUserLogged(this);
+        Bitmap customIconForCurrentUserLoged = Util.createCustomMarkerUser(this,R.drawable.user_image_min);
+
         mMap.addMarker(new MarkerOptions()
                 .position(currentUser.getMyPosition())
-                .title(currentUser.getTitle())).setIcon(BitmapDescriptorFactory.fromBitmap(Util.base64ToBitMap(user.getFaceImage())));
+                        .title(currentUser.getTitle())).setIcon(BitmapDescriptorFactory.fromBitmap(customIconForCurrentUserLoged));
+
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentUser.getMyPosition(),MAX_SIZE_ZOOM));
 
         /*When a marker was clicked*/

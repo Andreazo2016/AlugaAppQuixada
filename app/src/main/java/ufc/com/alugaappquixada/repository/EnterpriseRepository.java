@@ -11,6 +11,6 @@ import ufc.com.alugaappquixada.Model.Enterprise;
 public interface EnterpriseRepository {
     @GET("enterprises")
     Call<List<Enterprise>> getAllEnterpriseNearByMe();
-    @GET("enterprise/{id}")
+    @GET("enterprises/{id}")
     Call<Enterprise> findById(@Path("id") Integer id);
 }
