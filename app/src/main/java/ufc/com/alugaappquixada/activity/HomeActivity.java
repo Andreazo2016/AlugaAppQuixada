@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,14 +18,23 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import ufc.com.alugaappquixada.Config.ConfigRetrofit;
+import ufc.com.alugaappquixada.Model.Enterprise;
 import ufc.com.alugaappquixada.Model.MarkerInformation;
 import ufc.com.alugaappquixada.Model.PointMaker;
+import ufc.com.alugaappquixada.Model.User;
 import ufc.com.alugaappquixada.R;
 import ufc.com.alugaappquixada.presenter.MapPresenter;
 import ufc.com.alugaappquixada.presenter.MapPresenterImpl;
+import ufc.com.alugaappquixada.repository.EnterpriseRepository;
 import ufc.com.alugaappquixada.util.Util;
 import ufc.com.alugaappquixada.view.MapView;
 
@@ -48,7 +58,6 @@ public class HomeActivity extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bottom_sheet_layout);
-
         buttonViewDetails = findViewById(R.id.buttonViewMore);
         bottomSheet = findViewById( R.id.bottom_sheet );
         userOwenerImage = findViewById(R.id.user_image);
@@ -71,6 +80,7 @@ public class HomeActivity extends FragmentActivity
 
     private void setupBottomSheet() {
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        mBottomSheetBehavior.setHideable(true);
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         mBottomSheetBehavior.setPeekHeight(CLOSE_BOTTOM_SHEET);
         mBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
@@ -91,10 +101,12 @@ public class HomeActivity extends FragmentActivity
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         PointMaker currentUser = mapPresenter.getMyLocation();
-        Bitmap customIconForCurrentUserLoged = Util.createCustomMarker(this,R.drawable.user_image_min);
+        Bitmap customIconForCurrentUserLoged = Util.createCustomMarkerUser(this,R.drawable.user_image_min);
+
         mMap.addMarker(new MarkerOptions()
                 .position(currentUser.getMyPosition())
-                .title(currentUser.getTitle())).setIcon(BitmapDescriptorFactory.fromBitmap(customIconForCurrentUserLoged));
+                        .title(currentUser.getTitle())).setIcon(BitmapDescriptorFactory.fromBitmap(customIconForCurrentUserLoged));
+
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentUser.getMyPosition(),MAX_SIZE_ZOOM));
 
         /*When a marker was clicked*/

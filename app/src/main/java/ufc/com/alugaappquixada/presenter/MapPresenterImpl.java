@@ -1,16 +1,25 @@
 package ufc.com.alugaappquixada.presenter;
 
 import android.content.Context;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import ufc.com.alugaappquixada.Async.EnterpriseAsync;
+import ufc.com.alugaappquixada.Async.EnterprisebyMeAsync;
+import ufc.com.alugaappquixada.Config.ConfigRetrofit;
 import ufc.com.alugaappquixada.Model.Enterprise;
 import ufc.com.alugaappquixada.Model.MarkerInformation;
 import ufc.com.alugaappquixada.Model.Owner;
 import ufc.com.alugaappquixada.Model.PointMaker;
 import ufc.com.alugaappquixada.Model.User;
+import ufc.com.alugaappquixada.repository.EnterpriseRepository;
 import ufc.com.alugaappquixada.service.EnterpriseService;
 import ufc.com.alugaappquixada.service.LocationService;
 import ufc.com.alugaappquixada.service.UserService;
@@ -33,16 +42,21 @@ public class MapPresenterImpl implements MapPresenter {
 
     @Override
     public void onMarkerClick(Integer tagMarker) {
+        /*
         if(tagMarker != null) {
            Enterprise enterpriseCliked =  this.enterpriseService.findEnterpriseById(tagMarker);
             Owner owner = enterpriseCliked.getOwner();
            mapView.showInformationAboutMarkerClicked(MarkerInformation
                    .create(owner.getEmail(),owner.getName(),enterpriseCliked.getDescription(),owner.getPhoneNumber().getNumber()));
         }
+        */
+
+        new EnterpriseAsync(mapView).execute(tagMarker);
     }
     @Override
     public void seachAvailableApsNearByMe() {
-        List<PointMaker> listMockPointMaker = new ArrayList<>();
+        /*
+       List<PointMaker> listMockPointMaker = new ArrayList<>();
         List<Enterprise> avaliableEnterpriseNaerMe = this.enterpriseService.findAllEnterprise();
         for(Enterprise enterprise : avaliableEnterpriseNaerMe){
             listMockPointMaker.add(PointMaker.create(
@@ -51,6 +65,8 @@ public class MapPresenterImpl implements MapPresenter {
                     ,enterprise.getId()));
         }
         mapView.addAvailableApsOnMap(listMockPointMaker);
+        */
+       new EnterprisebyMeAsync(mapView).execute();
     }
 
     @Override

@@ -3,7 +3,6 @@ package ufc.com.alugaappquixada.Model;
 public class Owner {
     private String name;
     private String email;
-    private Adress adress;
     private PhoneNumber phoneNumber;
 
     public Owner(String name, String email, PhoneNumber phoneNumber) {

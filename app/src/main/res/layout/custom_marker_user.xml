@@ -8,8 +8,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_dp"
-        android:layout_width="42dp"
-        android:layout_height="46dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:civ_border_color="#fff"
         android:layout_alignParentTop="true"
         android:layout_gravity="center_horizontal"
@@ -18,30 +18,7 @@
         android:contentDescription="@null"
          />
 
-    <RelativeLayout
-        android:layout_width="50dp"
-        android:layout_height="59dp"
-        android:backgroundTint="#26c7db"
-        android:background="@drawable/marker_image_min">
 
-        <!--
-        <TextView
-            android:text="janet John"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="7sp"
-            android:layout_marginLeft="10dp"
-            android:textColor="#000"
-            android:alpha="0.8"
-            android:background="@drawable/blur_cicle"
-            android:id="@+id/name"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
-            -->
-
-
-    </RelativeLayout>
 
 
 </RelativeLayout>
