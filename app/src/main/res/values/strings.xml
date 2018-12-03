@@ -10,6 +10,22 @@
     <string name="basic_phone_number">Telefone:</string>
     <string name="showBasicInfor">Informações de contato do proprietário</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDI185i5SazsVPakbOY5j9u4UMZeeIQnog</string>
-
+    <string name="title_activity_details">DetailsActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_details_location">Informações sobre a locação</string>
+    <string name="state">Estado:</string>
+    <string name="city">Cidade:</string>
+    <string name="district">Bairro:</string>
+    <string name="number">nº:</string>
+    <string name="street">Rua:</string>
+    <string name="address">Endereço</string>
+    <string name="title">Informações sobre a locação</string>
+    <string name="owner">Proprietário</string>
+    <string name="name">Nome:</string>
+    <string name="logout">Sair</string>
+    <string name="description">Descrição</string>
+    <string name="checkVisit">Marcar uma visita</string>
 
 </resources>

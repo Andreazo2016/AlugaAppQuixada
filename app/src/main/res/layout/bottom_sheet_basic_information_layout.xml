@@ -124,6 +124,7 @@
             android:gravity="center"
             >
             <Button
+                android:id="@+id/buttonViewMore"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"

@@ -5,4 +5,10 @@
     <color name="colorAccent">#D81B60</color>
     <color name="branco">#30FFFFFF</color>
     <color name="cor_de_fundo_login">#009999</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorOfBlack">#181818</color>
+    <color name="colorGray">#717171</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorGreen">#009999</color>
+
 </resources>

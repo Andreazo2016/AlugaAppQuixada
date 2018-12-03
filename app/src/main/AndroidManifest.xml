@@ -48,6 +48,11 @@
         <activity
             android:name=".activity.HomeActivity"
             android:label="@string/title_activity_home" />
+
+        <activity
+            android:name=".activity.DetailsApartmentActivity"
+            android:label="@string/title_activity_details_location"
+            />
         <activity android:name=".activity.SignUpActivity"></activity>
         <provider
             android:name="android.support.v4.content.FileProvider"
