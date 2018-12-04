@@ -37,7 +37,14 @@ public class UserLoginAsync extends AsyncTask<String,Void,User> {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 if(response.isSuccessful()){
-                    User user  = response.body().get(0);
+                    User user = null;
+                    List<User> userList = response.body();
+                    if(userList.isEmpty()){
+                        loginView.onLoginFailure("Usuário não existente!");
+                    }else{
+                        user  = userList.get(0);
+                    }
+
                     if(user != null) {
                         if (user.getPassword().equals(password)) {
                             Util.saveUserOnSesion(ctx,user);
@@ -46,8 +53,9 @@ public class UserLoginAsync extends AsyncTask<String,Void,User> {
                         } else {
                             loginView.onLoginFailure("Senha inválida");
                         }
+                    }else {
+                        loginView.onLoginFailure("Usuário inválido");
                     }
-                    loginView.onLoginFailure("Usuário inválido");
                 }
             }
 

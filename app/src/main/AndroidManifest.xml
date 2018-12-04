@@ -8,11 +8,14 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     XHTML
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -48,23 +51,22 @@
         <activity
             android:name=".activity.HomeActivity"
             android:label="@string/title_activity_home" />
-
         <activity
             android:name=".activity.DetailsApartmentActivity"
-            android:label="@string/title_activity_details_location"
-            />
-        <activity android:name=".activity.SignUpActivity"></activity>
+            android:label="@string/title_activity_details_location" />
+        <activity android:name=".activity.SignUpActivity" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.asd.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true"
-            >
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"
-               />
+                android:resource="@xml/provider_paths" />
         </provider>
+
+        <activity android:name=".activity.UserDetailsActivity"></activity>
     </application>
 
 </manifest>

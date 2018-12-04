@@ -8,6 +8,19 @@
     android:background="@color/cor_de_fundo_login"
     tools:context=".activity.LoginActivity">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frameLogin"
+        android:visibility="gone">
+        <ProgressBar
+            android:id="@+id/progressLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

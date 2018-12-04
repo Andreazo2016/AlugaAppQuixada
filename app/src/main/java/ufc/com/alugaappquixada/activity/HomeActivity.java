@@ -1,8 +1,11 @@
 package ufc.com.alugaappquixada.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -70,12 +73,20 @@ public class HomeActivity extends FragmentActivity
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.maps);
-        mapFragment.getMapAsync(this);
 
+        mapFragment.getMapAsync(this);
+        getPermissions();
         buttonViewDetails.setOnClickListener( (view) -> {
             startActivity(new Intent(this,DetailsApartmentActivity.class));
         });
 
+    }
+    void getPermissions(){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET, Manifest.permission.ACCESS_NETWORK_STATE}, 1);
+        }
     }
 
     private void setupBottomSheet() {
@@ -100,12 +111,16 @@ public class HomeActivity extends FragmentActivity
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        getPermissions();
         PointMaker currentUser = mapPresenter.getMyLocation();
         Bitmap customIconForCurrentUserLoged = Util.createCustomMarkerUser(this,R.drawable.user_image_min);
 
-        mMap.addMarker(new MarkerOptions()
+        Marker me = mMap.addMarker(new MarkerOptions()
                 .position(currentUser.getMyPosition())
-                        .title(currentUser.getTitle())).setIcon(BitmapDescriptorFactory.fromBitmap(customIconForCurrentUserLoged));
+                        .title(currentUser.getTitle()));
+
+        me.setTag("main_user");
+        me.setIcon(BitmapDescriptorFactory.fromBitmap(customIconForCurrentUserLoged));
 
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentUser.getMyPosition(),MAX_SIZE_ZOOM));
 
@@ -113,8 +128,13 @@ public class HomeActivity extends FragmentActivity
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick( Marker marker ) {
-                Integer tagOfMarker = ( Integer ) marker.getTag();
-                mapPresenter.onMarkerClick( tagOfMarker );
+                String main_user  =  (String) marker.getTag();
+                if(main_user.equals("main_user")){
+                    startActivity(new Intent(HomeActivity.this,UserDetailsActivity.class));
+                }else {
+                    Integer tagOfMarker = (Integer) marker.getTag();
+                    mapPresenter.onMarkerClick(tagOfMarker);
+                }
                 return false;
             }
         });
