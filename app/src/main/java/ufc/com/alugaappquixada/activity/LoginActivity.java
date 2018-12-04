@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,8 @@ public class LoginActivity extends Activity implements LoginView {
     private Button  loginBtnConfirm;
     private TextView signUp;
     private LoginPresenter loginPresenter;
+    private FrameLayout frameLayout;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,8 @@ public class LoginActivity extends Activity implements LoginView {
         passwordText = findViewById(R.id.passwordText);
         loginBtnConfirm = findViewById(R.id.loginBtn);
         signUp = findViewById(R.id.signup);
+        frameLayout = findViewById(R.id.frameLogin);
+        progressBar = findViewById(R.id.progressLogin);
 
         loginPresenter = LoginPresenterImpl.createWithContext(this,this);
 
@@ -41,6 +47,7 @@ public class LoginActivity extends Activity implements LoginView {
             public void onClick(View view) {
                 String username = emailText.getText().toString();
                 String password = passwordText.getText().toString();
+                frameLayout.setVisibility(View.VISIBLE);
                 loginPresenter.validateCredential(username,password);
             }
         });
@@ -56,6 +63,7 @@ public class LoginActivity extends Activity implements LoginView {
     @Override
     public void onLoginSucess() {
         //todo pass user loged to homeactivity
+        frameLayout.setVisibility(View.GONE);
         startActivity(new Intent(this,HomeActivity.class));
     }
 
